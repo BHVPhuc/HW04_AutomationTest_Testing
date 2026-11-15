@@ -1,0 +1,110 @@
+[
+  {
+    "id": "TC-FR15-AT-01",
+    "title": "View initial seed list with 5 products",
+    "expectedCount": 5,
+    "expected": "initial-list"
+  },
+  {
+    "id": "TC-FR15-DT-01",
+    "title": "Create a valid product and verify it appears in table and API",
+    "name": "Tai nghe Bluetooth Sony",
+    "price": "1290000",
+    "imageUrl": "https://placehold.co/300",
+    "description": "Âm thanh chuẩn",
+    "category": "Phụ kiện",
+    "expectedCount": 6,
+    "expected": "create-success"
+  },
+  {
+    "id": "TC-FR15-DT-02",
+    "title": "Reject creating product when name is empty",
+    "name": "",
+    "price": "500000",
+    "category": "Điện thoại",
+    "expectedCount": 5,
+    "expected": "missing-name"
+  },
+  {
+    "id": "TC-FR15-DT-07",
+    "title": "Reject creating product when price is empty",
+    "name": "Loa Bluetooth Test",
+    "price": "",
+    "category": "Laptop",
+    "expectedCount": 5,
+    "expected": "create-rejected"
+  },
+  {
+    "id": "TC-FR15-DT-05",
+    "title": "Reject creating product when price is 0",
+    "name": "Chuột Gaming Test",
+    "price": "0",
+    "category": "Phụ kiện",
+    "expectedCount": 5,
+    "expected": "create-rejected"
+  },
+  {
+    "id": "TC-FR15-BVA-10",
+    "title": "Reject creating product when price is -1",
+    "name": "SP Giá Âm Test",
+    "price": "-1",
+    "category": "Điện thoại",
+    "expectedCount": 5,
+    "expected": "create-rejected"
+  },
+  {
+    "id": "TC-FR15-BVA-07",
+    "title": "Allow creating product at minimum positive price 1",
+    "name": "Ghim giấy Test",
+    "price": "1",
+    "category": "Phụ kiện",
+    "expectedCount": 6,
+    "expected": "create-success"
+  },
+  {
+    "id": "TC-FR15-BVA-05",
+    "title": "Allow creating product with 255-character name",
+    "nameLength": 255,
+    "price": "100000",
+    "category": "Điện thoại",
+    "expectedCount": 6,
+    "expected": "create-success"
+  },
+  {
+    "id": "TC-FR15-DT-04",
+    "title": "Reject creating product with 256-character name",
+    "nameLength": 256,
+    "price": "100000",
+    "category": "Điện thoại",
+    "expectedCount": 5,
+    "expected": "create-rejected"
+  },
+  {
+    "id": "TC-FR15-AT-02",
+    "title": "Click Edit on test product loads Sửa sản phẩm form with existing values",
+    "seedName": "SP Test Sửa Form",
+    "seedPrice": "250000",
+    "category": "Phụ kiện",
+    "expectedFormTitle": "Sửa sản phẩm",
+    "expected": "edit-form-prefilled"
+  },
+  {
+    "id": "TC-FR15-DT-08",
+    "title": "Edit test product name updates only that product and keeps seed products unchanged",
+    "seedName": "SP Test Cô Lập",
+    "seedPrice": "350000",
+    "newName": "SP Test Đã Đổi Tên",
+    "category": "Phụ kiện",
+    "preservedSeedName": "iPhone 15 Pro Max",
+    "expected": "edit-isolated"
+  },
+  {
+    "id": "TC-FR15-DT-09",
+    "title": "Delete test product removes row and leaves 5 seed products",
+    "seedName": "SP Test Xóa",
+    "seedPrice": "150000",
+    "category": "Phụ kiện",
+    "expectedCount": 5,
+    "expected": "delete-success"
+  }
+]
