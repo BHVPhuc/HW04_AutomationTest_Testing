@@ -1,0 +1,96 @@
+[
+  {
+    "id": "TC-FR08-AT-01",
+    "title": "Redirect unauthenticated user to login when clicking checkout in cart",
+    "requireLogin": false,
+    "products": ["iPhone 15 Pro Max"],
+    "expected": "unauth-redirect"
+  },
+  {
+    "id": "TC-FR08-AT-02",
+    "title": "Logged-in user navigates to checkout page and sees order confirmation heading",
+    "requireLogin": true,
+    "products": ["iPhone 15 Pro Max"],
+    "expectedHeading": "Xác Nhận Đơn Hàng",
+    "expected": "checkout-heading"
+  },
+  {
+    "id": "TC-FR08-BVA-02",
+    "title": "Display 1 product item line correctly on checkout page",
+    "requireLogin": true,
+    "products": ["iPhone 15 Pro Max"],
+    "expectedItemText": "iPhone 15 Pro Max x 1",
+    "expected": "checkout-item-text"
+  },
+  {
+    "id": "TC-FR08-DT-02",
+    "title": "Display 2 distinct products in checkout item list",
+    "requireLogin": true,
+    "products": ["iPhone 15 Pro Max", "Bàn phím cơ Keychron Q1"],
+    "expectedItemCount": 2,
+    "expected": "checkout-item-count"
+  },
+  {
+    "id": "TC-FR08-BVA-05",
+    "title": "Calculate total amount for 1 product (30,000,000 VND)",
+    "requireLogin": true,
+    "products": ["iPhone 15 Pro Max"],
+    "expectedTotal": 30000000,
+    "expected": "checkout-total"
+  },
+  {
+    "id": "TC-FR08-BVA-03",
+    "title": "Calculate total amount for 2 distinct products (34,000,000 VND)",
+    "requireLogin": true,
+    "products": ["iPhone 15 Pro Max", "Bàn phím cơ Keychron Q1"],
+    "expectedTotal": 34000000,
+    "expected": "checkout-total"
+  },
+  {
+    "id": "TC-FR08-AT-03",
+    "title": "Calculate total amount when adding same product twice (60,000,000 VND)",
+    "requireLogin": true,
+    "products": ["iPhone 15 Pro Max", "iPhone 15 Pro Max"],
+    "expectedTotal": 60000000,
+    "expected": "checkout-total"
+  },
+  {
+    "id": "TC-FR08-DT-06",
+    "title": "Total amount field on checkout UI must not be editable",
+    "requireLogin": true,
+    "products": ["iPhone 15 Pro Max"],
+    "expected": "total-not-editable"
+  },
+  {
+    "id": "TC-FR08-DT-01",
+    "title": "Complete valid checkout and display success message",
+    "requireLogin": true,
+    "products": ["iPhone 15 Pro Max"],
+    "expected": "checkout-success"
+  },
+  {
+    "id": "TC-FR08-DT-11",
+    "title": "Clear cart after successful checkout",
+    "requireLogin": true,
+    "products": ["iPhone 15 Pro Max"],
+    "expected": "cart-cleared"
+  },
+  {
+    "id": "TC-FR08-AT-04",
+    "title": "Record new order in profile order history with pending status and right total",
+    "requireLogin": true,
+    "products": ["iPhone 15 Pro Max"],
+    "expectedStatus": "Chờ xác nhận",
+    "expectedTotal": 30000000,
+    "expected": "order-in-profile"
+  },
+  {
+    "id": "TC-FR08-DT-07",
+    "title": "Backend recalculates total amount when client tampers UI total to 1000",
+    "requireLogin": true,
+    "products": ["iPhone 15 Pro Max"],
+    "editTotalTo": "1000",
+    "expectedTotal": 30000000,
+    "expected": "tamper-recalculated"
+  }
+]
