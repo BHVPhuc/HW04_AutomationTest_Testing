@@ -9,6 +9,12 @@ const {
   getMyOrders,
 } = require('../helpers/common');
 
+async function getLatestTestUserOrder(request) {
+  const auth = await loginApi(request, 'test@eshop.com', 'Test1234!');
+  const orders = await getMyOrders(request, auth.token);
+  return orders[0];
+}
+
 test.describe('FR-08: Checkout', () => {
   test.beforeEach(async ({}, testInfo) => {
     attachRunBy(testInfo);
@@ -29,12 +35,13 @@ test.describe('FR-08: Checkout', () => {
       await page.getByRole('link', { name: 'Giỏ hàng' }).click();
 
       if (c.expected === 'unauth-redirect') {
-        let dialogMsg = '';
-        page.once('dialog', async (dialog) => {
-          dialogMsg = dialog.message();
+        const dialogPromise = page.waitForEvent('dialog').then(async (dialog) => {
+          const msg = dialog.message();
           await dialog.accept();
+          return msg;
         });
         await page.getByRole('button', { name: 'Tiến hành thanh toán' }).click();
+        const dialogMsg = await dialogPromise;
         expect(dialogMsg).toContain('Bạn cần đăng nhập');
         await expect(page).toHaveURL(/\/login$/);
         return;
@@ -51,9 +58,9 @@ test.describe('FR-08: Checkout', () => {
       if (c.expected === 'checkout-heading') {
         await expect(page.getByRole('heading', { name: c.expectedHeading })).toBeVisible();
       } else if (c.expected === 'checkout-item-text') {
-        await expect(page.locator('ul li', { hasText: c.expectedItemText })).toBeVisible();
+        await expect(page.locator('main ul li', { hasText: c.expectedItemText })).toBeVisible();
       } else if (c.expected === 'checkout-item-count') {
-        await expect(page.locator('ul li')).toHaveCount(c.expectedItemCount);
+        await expect(page.locator('main ul li')).toHaveCount(c.expectedItemCount);
       } else if (c.expected === 'checkout-total') {
         const totalText = await page.locator('span:has-text("Tổng thanh toán:")').textContent();
         expect(parseMoney(totalText)).toBe(c.expectedTotal);
@@ -67,9 +74,7 @@ test.describe('FR-08: Checkout', () => {
           await page.getByRole('link', { name: 'Giỏ hàng' }).click();
           await expect(page.getByText('Giỏ hàng của bạn đang trống')).toBeVisible();
         } else if (c.expected === 'order-in-profile') {
-          const auth = await loginApi(request, 'test@eshop.com', 'Test1234!');
-          const orders = await getMyOrders(request, auth.token);
-          const latestOrder = orders[0];
+          const latestOrder = await getLatestTestUserOrder(request);
           await page.getByText('Chào, Test User').click();
           await expect(page).toHaveURL(/\/profile$/);
           const orderRow = page.locator('tbody tr', { hasText: `#${latestOrder.id}` });
@@ -78,9 +83,7 @@ test.describe('FR-08: Checkout', () => {
           const orderTotalText = await orderRow.locator('td').nth(2).textContent();
           expect(parseMoney(orderTotalText)).toBe(c.expectedTotal);
         } else if (c.expected === 'tamper-recalculated') {
-          const auth = await loginApi(request, 'test@eshop.com', 'Test1234!');
-          const orders = await getMyOrders(request, auth.token);
-          const latestOrder = orders[0];
+          const latestOrder = await getLatestTestUserOrder(request);
           expect(Number(latestOrder.total_amount)).toBe(c.expectedTotal);
         }
       }
