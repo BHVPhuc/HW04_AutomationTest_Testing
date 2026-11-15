@@ -77,7 +77,9 @@ test.describe('FR-08: Checkout', () => {
           const latestOrder = await getLatestTestUserOrder(request);
           await page.getByText('Chào, Test User').click();
           await expect(page).toHaveURL(/\/profile$/);
-          const orderRow = page.locator('tbody tr', { hasText: `#${latestOrder.id}` });
+          const orderRow = page.locator('tbody tr').filter({
+            has: page.getByText(`#${latestOrder.id}`, { exact: true }),
+          });
           await expect(orderRow).toBeVisible();
           await expect(orderRow.locator('td').nth(3)).toHaveText(c.expectedStatus);
           const orderTotalText = await orderRow.locator('td').nth(2).textContent();
