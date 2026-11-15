@@ -1,0 +1,104 @@
+[
+  {
+    "id": "TC-FR06-AT-01",
+    "title": "Display product detail for id 1 (iPhone 15 Pro Max)",
+    "productId": 1,
+    "name": "iPhone 15 Pro Max",
+    "price": 30000000,
+    "description": "Điện thoại cao cấp của Apple",
+    "category": "Điện thoại",
+    "expected": "product-detail"
+  },
+  {
+    "id": "TC-FR06-AT-02",
+    "title": "Display product detail for id 2 (Samsung Galaxy S24 Ultra)",
+    "productId": 2,
+    "name": "Samsung Galaxy S24 Ultra",
+    "price": 28000000,
+    "description": "Màn hình hiển thị xuất sắc, camera siêu zoom",
+    "category": "Điện thoại",
+    "expected": "product-detail"
+  },
+  {
+    "id": "TC-FR06-AT-03",
+    "title": "Display product detail for id 3 (MacBook Pro M3)",
+    "productId": 3,
+    "name": "MacBook Pro M3",
+    "price": 45000000,
+    "description": "Laptop chuyên nghiệp mạnh mẽ",
+    "category": "Laptop",
+    "expected": "product-detail"
+  },
+  {
+    "id": "TC-FR06-AT-04",
+    "title": "Display product detail for id 4 (Tai nghe AirPods Pro 2)",
+    "productId": 4,
+    "name": "Tai nghe AirPods Pro 2",
+    "price": 6000000,
+    "description": "Chống ồn chủ động xuất sắc",
+    "category": "Phụ kiện",
+    "expected": "product-detail"
+  },
+  {
+    "id": "TC-FR06-BVA-10",
+    "title": "Display product detail for id 5 (Bàn phím cơ Keychron Q1)",
+    "productId": 5,
+    "name": "Bàn phím cơ Keychron Q1",
+    "price": 4000000,
+    "description": "Gõ cực sướng, thiết kế kim loại",
+    "category": "Phụ kiện",
+    "expected": "product-detail"
+  },
+  {
+    "id": "TC-FR06-DT-09",
+    "title": "Display product category on detail page",
+    "productId": 1,
+    "category": "Điện thoại",
+    "expected": "category-visible"
+  },
+  {
+    "id": "TC-FR06-AT-05",
+    "title": "Quantity input defaults to 1",
+    "productId": 1,
+    "expectedQuantity": "1",
+    "expected": "default-quantity"
+  },
+  {
+    "id": "TC-FR06-AT-06",
+    "title": "Quantity input enforces min=1 attribute",
+    "productId": 1,
+    "expectedMin": "1",
+    "expected": "quantity-min-attr"
+  },
+  {
+    "id": "TC-FR06-DT-11",
+    "title": "First click on Add to Cart updates button to Đã thêm",
+    "productId": 1,
+    "quantity": 1,
+    "expected": "added-feedback"
+  },
+  {
+    "id": "TC-FR06-DT-01",
+    "title": "Add quantity 2 to cart and verify cart item quantity",
+    "productId": 1,
+    "name": "iPhone 15 Pro Max",
+    "quantity": 2,
+    "expectedRows": 1,
+    "expectedCartQty": "2",
+    "expected": "cart-updated"
+  },
+  {
+    "id": "TC-FR06-DT-02",
+    "title": "Reject quantity 0 when adding to cart",
+    "productId": 1,
+    "quantity": 0,
+    "expected": "cart-empty"
+  },
+  {
+    "id": "TC-FR06-AT-07",
+    "title": "Navigate from Home Xem chi tiết to product detail page",
+    "productId": 1,
+    "name": "iPhone 15 Pro Max",
+    "expected": "navigate-from-home"
+  }
+]
