@@ -30,6 +30,7 @@ Không dùng 1 prompt duy nhất để sinh toàn bộ script. Thực hiện tu�
 | **Input không có `id` / `for`** | Form tối giản, `<label>` đứng ngay trước `<input>` | Web: `page.locator('label:has-text("...") + input')`; Admin: `getByPlaceholder(...)` |
 | **Khớp nhầm chuỗi con (`getByText`)** | Từ khóa ngắn (vd `"Điện thoại"`) xuất hiện trong câu mô tả sản phẩm | Luôn truyền `{ exact: true }` khi kiểm tra nhãn/danh mục/tab |
 | **Nhiều nút `Sửa` / `Xóa` trùng tên** | Mỗi dòng `<tr>` đều có nút giống nhau | Khoanh vùng theo dòng: `page.locator('tbody tr', { hasText: name })` |
+| **Ghép text cột bảng gây trùng tiền tố (`#1` vs `#11`)** | `tr` nối liền `<td>#1</td><td>15/11/2026</td>` thành `#115/11/...` | Dùng `filter({ has: page.getByText('#11', { exact: true }) })` thay vì `hasText` |
 | **Hộp thoại `alert()` chặn luồng** | Checkout, Profile, Admin dùng `window.alert()` | Đăng ký `page.once('dialog', ...)` **trước** khi bấm nút submit, lưu `dialog.message()` rồi `accept()` |
 | **HTML5 `required` không hiện text lỗi trong DOM** | Trình duyệt chặn submit bằng validation bubble riêng | Kiểm tra `await input.evaluate(el => el.validity.valueMissing)` là `true` và URL/số dòng không đổi |
 | **Ô `type="number"` không nhận chữ** | Playwright `fill('abc')` báo lỗi ngay | Đưa TC nhập chữ vào ô số vào mục không tự động hóa kèm lý do |

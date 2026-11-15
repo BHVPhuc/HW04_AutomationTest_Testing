@@ -108,8 +108,14 @@ test.describe('FR-15: Product CRUD (Admin)', () => {
         const postPromise = page
           .waitForResponse((r) => r.url().includes('/api/products') && r.request().method() === 'POST', { timeout: 1500 })
           .catch(() => null);
+        const refreshPromise = page
+          .waitForResponse((r) => r.url().includes('/api/products') && r.request().method() === 'GET', { timeout: 2500 })
+          .catch(() => null);
         await page.getByRole('button', { name: 'Lưu sản phẩm' }).click();
-        await postPromise;
+        const postRes = await postPromise;
+        if (postRes) {
+          await refreshPromise;
+        }
         const res = await request.get(`${API_URL}/products`);
         const list = await res.json();
         expect(list.length).toBe(c.expectedCount);
