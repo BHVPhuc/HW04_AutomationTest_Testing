@@ -20,6 +20,7 @@ test.describe('FR-06: Product Detail', () => {
 
       await page.goto(`/product/${c.productId}`);
       await expect(page.locator('h1')).toBeVisible();
+      const qtyInput = page.locator('label:has-text("Số lượng:") + input');
 
       if (c.expected === 'product-detail') {
         await expect(page.locator('h1')).toHaveText(c.name);
@@ -28,21 +29,17 @@ test.describe('FR-06: Product Detail', () => {
         await expect(page.getByText(c.description, { exact: true })).toBeVisible();
         await expect(page.locator('main img')).toHaveAttribute('alt', c.name);
       } else if (c.expected === 'category-visible') {
-        await expect(page.getByText(c.category)).toBeVisible();
+        await expect(page.getByText(c.category, { exact: true })).toBeVisible();
       } else if (c.expected === 'default-quantity') {
-        const qtyInput = page.locator('label:has-text("Số lượng:") + input');
         await expect(qtyInput).toHaveValue(c.expectedQuantity);
       } else if (c.expected === 'quantity-min-attr') {
-        const qtyInput = page.locator('label:has-text("Số lượng:") + input');
         await expect(qtyInput).toHaveAttribute('min', c.expectedMin);
       } else if (c.expected === 'added-feedback') {
-        const qtyInput = page.locator('label:has-text("Số lượng:") + input');
         await qtyInput.fill(String(c.quantity));
         const addBtn = page.getByRole('button', { name: /Thêm vào giỏ hàng|Đã thêm/ });
         await addBtn.click();
         await expect(addBtn).toHaveText('Đã thêm');
       } else if (c.expected === 'cart-updated') {
-        const qtyInput = page.locator('label:has-text("Số lượng:") + input');
         await qtyInput.fill(String(c.quantity));
         await page.getByRole('button', { name: 'Thêm vào giỏ hàng' }).click();
         await page.getByRole('link', { name: 'Giỏ hàng' }).click();
@@ -50,7 +47,6 @@ test.describe('FR-06: Product Detail', () => {
         await expect(rows).toHaveCount(c.expectedRows);
         await expect(rows.first().locator('td').nth(2)).toHaveText(c.expectedCartQty);
       } else if (c.expected === 'cart-empty') {
-        const qtyInput = page.locator('label:has-text("Số lượng:") + input');
         await qtyInput.fill(String(c.quantity));
         await page.getByRole('button', { name: 'Thêm vào giỏ hàng' }).click();
         await page.getByRole('link', { name: 'Giỏ hàng' }).click();
