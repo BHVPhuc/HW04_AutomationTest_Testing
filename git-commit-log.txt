@@ -1,4 +1,6 @@
-﻿afcd2c0 | 2026-11-17 00:13:06 +0700 | 23120328 | docs: add GitHub repository link to README
+﻿44cdd87 | 2026-11-17 00:17:57 +0700 | 23120328 | docs(bugs): link HW04 GitHub issues #159-#164 and add issues screenshot
+dc9b97f | 2026-11-17 00:13:07 +0700 | 23120328 | docs: update git-commit-log.txt
+afcd2c0 | 2026-11-17 00:13:06 +0700 | 23120328 | docs: add GitHub repository link to README
 3479d5a | 2026-11-16 01:28:14 +0700 | 23120328 | docs: save git-commit-log.txt in UTF-8
 109c742 | 2026-11-16 01:28:03 +0700 | 23120328 | docs: update git-commit-log.txt
 6d34f8c | 2026-11-16 01:28:03 +0700 | 23120328 | chore: keep only 9 feature-browser HTML reports
