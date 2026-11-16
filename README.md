@@ -4,7 +4,7 @@
 - **Môn học:** Kiểm thử phần mềm (Software Testing) — HK1, Năm học 2026–2027
 - **Phân công Nhóm 09:** Pool A `FR-06` (Chi tiết sản phẩm) · Pool B `FR-08` (Checkout) · Pool C `FR-15` (CRUD Sản phẩm - Admin)
 - **Trang GitHub Issues của nhóm:** https://github.com/kqanGit/eshop-sut/issues
-- **Repo cá nhân HW04:** *(Điền link GitHub repo public của bạn sau khi push)*
+- **Repo cá nhân HW04:** https://github.com/BHVPhuc/HW04_AutomationTest_Testing
 - **Video Demo chính (YouTube unlisted ≥ 5 phút):** *(Điền link YouTube sau khi quay)*
 - **Video Agent Skill (YouTube unlisted):** *(Điền link YouTube sau khi quay)*
 
